@@ -4,17 +4,81 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <title>Poker</title>
+    <style>
+        body{
+            background-image: url(static/images/background.png);
+            background-repeat: no-repeat;
+            background-size: 100%;
+        }
+        .flip-card{
+            background-color: transparent;
+            perspective: 1000px;
+        }
+        .flip-card-inner{
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition:transform 0.8s;
+            transform-style: preserve-3d;
+        }
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+        }
+        .flip-card-front{
+            background-color: #bbb;
+        }
+        .flip-card-back {
+            transform: rotateY(180deg);
+        }
+    </style>
 </head>
 <body>
-    User1
-    {% for card in user1_card %}
-    <img src="static/images/{{card}}" width="100" height="150">
-    {% endfor %}
-    <br>
-    User2
-    {% for card in user2_card %}
-    <img src="static/images/{{card}}" width="100" height="150">
-    {% endfor %}
+   <div class="container">
+       <div class="row">
+           <div class="row" style="font-size: 20px; color:orangered;margin:15px 0px;">
+               Player
+           </div>
+       <div class="row">
+           {% for card in user1_card %}
+            <div class="col-sm-2">
+                <img src="static/images/{{card}}" style="height: 175px;">
+            </div>
+            {% endfor %}
+       </div>
+    </div>
+    <div class="row">
+            <div class="row" style="font-size: 20px; color:orangered;margin:15px 0px;">
+                Computer
+            </div>
+        <div class="row">
+            {% for card in user2_card %}
+            <div class="col-sm-2">
+            <div class="flip-card">
+                    <div class="flip-card-inner">
+                      <div class="flip-card-front">
+                        <img src="static/images/cover.png" alt="Cover" style="height: 175px;">
+                      </div>
+                      <div class="flip-card-back">
+                            <img src="static/images/{{card}}" alt="Cover" style="height: 175px;">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+             {% endfor %}
+        </div>
+          </div>
+     </div>
+     
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </body>
 </html>
